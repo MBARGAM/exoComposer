@@ -1,0 +1,20 @@
+{
+    "name": "isl/demo",
+    "description": "gestion des personnes",
+    "type": "project",
+    "require": {
+        "fakerphp/faker": "^1.20"
+    },
+    "license": "j17",
+    "autoload": {
+        "psr-4": {
+            "Isl\\Demo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "J17"
+        }
+    ],
+    "minimum-stability": "stable"
+}
