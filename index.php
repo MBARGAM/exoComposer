@@ -9,10 +9,15 @@
    
     $connexion = new PDO('mysql:host=localhost;dbname=webDev3','root','root');
 
-
     //PersonneManager::PersonneCreate(5);// pas besoin d'instancier les fonctions statiques 
-    
-   $tableau = PersonneManager::PersonneCreate(5);
+  
+    $newManager = new PersonneManager($connexion);
+   $tableau = PersonneManager::PersonneCreate(10);
+   foreach($tableau as $value){
+     $newManager->create($value);
+   }
+
+   echo $tableau[0]->getNom();
 
 
 ?>
