@@ -11,14 +11,24 @@
 
     //PersonneManager::PersonneCreate(5);// pas besoin d'instancier les fonctions statiques 
   
-    $newManager = new PersonneManager($connexion);
-   $tableau = PersonneManager::PersonneCreate(10);
+   $newManager = new PersonneManager($connexion);
+   /*$tableau = PersonneManager::PersonneCreate(5); // appel du generateur  de données faker 
+  
    foreach($tableau as $value){
-     $newManager->create($value);
-   }
+     $newManager::create($value);
+   }*/
+   
+   //$resultat = Personnemanager::read();// function statique 
+   $resultat = PersonneManager::readAll();// function statique 
+   $updateTab = PersonneManager::read(3);// modification de la 2eme entree
+   $newPersonne = new Personne($updateTab[0]); //instanciation de la classe personne
+   $newPersonne->setNom("boquet");//modification du nom
+   $newPersonne->setPrenom("Pierre"); //modification du prenom
+   PersonneManager::update($newPersonne); // modif dans la bd fonction statique donc pas besoin de l instancier
+   $resultat = PersonneManager::readAll();// affichage 
+   
 
-   echo $tableau[0]->getNom();
-
+  
 
 ?>
 <!DOCTYPE html>
@@ -35,6 +45,7 @@
    <table class="table">
             <thead class="thead-dark">
                 <tr>
+                    <th scope="col">Id</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
                     <th scope="col">Code postal</th>
@@ -45,15 +56,17 @@
             </thead>
             <tbody>
                    <?php 
-                foreach($tableau as $value){
+                foreach($resultat as $value){
+                  
                   ?>
                     <tr>
-                      <td><?php echo ucfirst($value->getNom()); ?></td>
-                      <td><?php echo ucfirst($value->getPrenom()); ?></td>
-                      <td><?php echo ucfirst($value->getCp()); ?></td>
-                      <td><?php echo ucfirst($value->getAdresse()); ?></td>
-                      <td><?php echo ucfirst($value->getPays()); ?></td>
-                      <td><?php echo ucfirst($value->getSociete()); ?></td>
+                      <td><?php echo $value["id"]; ?></td>
+                      <td><?php echo ucfirst($value["nom"]); ?></td>
+                      <td><?php echo ucfirst($value["prenom"]); ?></td>
+                      <td><?php echo ucfirst($value["cp"]); ?></td>
+                      <td><?php echo ucfirst($value["adresse"]); ?></td>
+                      <td><?php echo ucfirst($value["pays"]); ?></td>
+                      <td><?php echo ucfirst($value["societe"]); ?></td>
                     </tr>
                   <?php 
                 } 

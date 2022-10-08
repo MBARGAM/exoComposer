@@ -12,12 +12,13 @@
         private $societe ;
 
         public function __construct($data){
-            $this->nom = $data["nom"];
-            $this->prenom = $data["prenom"];
-            $this->adresse = $data["adresse"];
-            $this->cp = $data["cp"];
-            $this->pays = $data["pays"];
-            $this->societe = $data["societe"];
+            $this->id = isset($data["id"])?$data["id"]:null;
+            $this->nom = isset($data["nom"])?$data["nom"]:null;
+            $this->prenom = isset($data["prenom"])?$data["prenom"]:null;
+            $this->adresse = isset($data["adresse"])?$data["adresse"]:null;
+            $this->cp =isset($data["cp"])?$data["cp"]:null;
+            $this->pays = isset($data["pays"])?$data["pays"]:null;
+            $this->societe = isset($data["societe"])?$data["societe"]:null;
 
         }
 
